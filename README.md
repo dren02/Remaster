@@ -13,33 +13,23 @@ This project was a collaborative effort; I worked alongside @jazz-y.
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 <br>
 
-Download the necessary dependencies and packages to start the react application
+Download the necessary dependencies to start the react application
 
 ```bash
 cd this-project
 npm install
 ```
-Install the following npm packages for the <b>frontend</b>
-- React Router DOM:
+The front end will be accessible at http://localhost:3000
 ```bash
-npm install react-router-dom
-```
-- Axios:
-```bash
-npm install axios
-```
-- React Bootstrap:
-```bash
-npm install react-bootstrap bootstrap
-```
-- React Card Flip
-```bash
-npm install react-card-flip
+npm start
 ```
 <br>
-
 Install the required <b>backend</b> dependencies and packages. Then, start the servers to begin using the app.
+
 ```bash
+cd server
+npm install
+
 npm run dev
 ```
 
