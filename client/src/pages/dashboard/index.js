@@ -53,7 +53,6 @@ const DashboardIndex = () => {
               <Card key={index} style={{ width: '15rem', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', marginTop: '5vh' }}>
                 <Card.Body className="text-center">
                   <Card.Title>{set.setName}</Card.Title>
-                  {/* <Card.Text> blah blah blah </Card.Text> */}
                   {/* <Link to={`/study/${set.id}`}>Study Set</Link> */}
                   <Card.Link href="/study">Study Set</Card.Link>
                 </Card.Body>

@@ -18,6 +18,8 @@ class Study extends Component {
   }
 
   componentDidMount() {
+    // const { id } = this.props.match.params;
+    // const { username } = this.props; refer to bottom code for guidance?
     axios
       .get(`http://ec2-18-216-254-218.us-east-2.compute.amazonaws.com:3001/auth/set`)
       .then(response => {
@@ -34,17 +36,18 @@ class Study extends Component {
   };
 
   handleEdit = () => {
-    const navigate = useNavigate();
+    const navigate = this.props.navigate; // Access navigate from the props
     navigate('/edit');
   };
 
   handleDelete = async () => {
-    const { navigate } = this.props;
     try {
       await axios.post(
         `http://ec2-18-216-254-218.us-east-2.compute.amazonaws.com:3001/auth/deleteSet`
       );
       console.log('Set deleted successfully');
+      const navigate = this.props.navigate;
+      navigate('/dashboard');
     } catch (error) {
       console.error('Cannot delete set:', error);
       // Handle error, show an error message, etc.
@@ -53,18 +56,22 @@ class Study extends Component {
 
   render() {
     const { cardData } = this.state;
-
-  return (
+    return (
       <>
         <NavBar />
+         {/* <NavBar content={username}></NavBar>  */}
         <span style={{ margin: '0 10px' }}> </span>
-        <Button variant="warning" onClick={this.handleEdit} >Edit</Button>
-        <Button variant="outline-warning" onClick={() => this.handleDelete()} > Delete</Button>
+        <Button variant="warning" onClick={this.handleEdit}>
+          Edit
+        </Button>
+        <Button variant="outline-warning" onClick={() => this.handleDelete()}>
+          Delete
+        </Button>
         {cardData ? (
           cardData.map((card, index) => (
-            <ReactCardFlip key={index} isFlipped={this.state.isFlipped} flipDirection="vertical" >
-              <CardDisplay onClick={this.handleClick} content={<div>{card.term}</div>} ></CardDisplay>
-              <CardDisplay onClick={this.handleClick} content={<div>{card.def}</div>} ></CardDisplay>
+            <ReactCardFlip key={index} isFlipped={this.state.isFlipped} flipDirection="vertical">
+              <CardDisplay onClick={this.handleClick} content={<div>{card.term}</div>} />
+              <CardDisplay onClick={this.handleClick} content={<div>{card.def}</div>} />
             </ReactCardFlip>
           ))
         ) : (
@@ -75,4 +82,7 @@ class Study extends Component {
   }
 }
 
-export default Study;
+export default function StudyWrapper(props) {
+  const navigate = useNavigate();
+  return <Study {...props} navigate={navigate} />;
+}

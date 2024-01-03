@@ -44,7 +44,6 @@ const Create = () => {
             <Button variant="outline-dark" onClick={addTerm} style={{ position: 'fixed', right: '60px' }}>Add term</Button>
                 {cards.map((term, index) => ( // iterate through card array
                     <div key={index} style = {pagestyle}>
-                    <span style={{ margin: '0 50px' }}> </span>
                         <input // for term side
                             type="text"
                             placeholder={`Term ${index + 1}`}
